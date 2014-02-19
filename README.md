@@ -28,7 +28,6 @@ reload arduino .
 
 ## Example Code
 
-
 	/**
 	* Read a card using a mfrc522 reader on your SPI interface
 	* Pin layout should be as follows (on Arduino Uno):
@@ -94,27 +93,27 @@ reload arduino .
 	                //Serial.println(" ");
 	                Serial.println("Cardnumber:");
 	                Serial.print("Dec: ");
-			Serial.print(rfid.serNum[0],DEC);
+					Serial.print(rfid.serNum[0],DEC);
 	                Serial.print(", ");
-			Serial.print(rfid.serNum[1],DEC);
+					Serial.print(rfid.serNum[1],DEC);
 	                Serial.print(", ");
-			Serial.print(rfid.serNum[2],DEC);
+					Serial.print(rfid.serNum[2],DEC);
 	                Serial.print(", ");
-			Serial.print(rfid.serNum[3],DEC);
+					Serial.print(rfid.serNum[3],DEC);
 	                Serial.print(", ");
-			Serial.print(rfid.serNum[4],DEC);
+					Serial.print(rfid.serNum[4],DEC);
 	                Serial.println(" ");
 	                        
 	                Serial.print("Hex: ");
-			Serial.print(rfid.serNum[0],HEX);
+					Serial.print(rfid.serNum[0],HEX);
 	                Serial.print(", ");
-			Serial.print(rfid.serNum[1],HEX);
+					Serial.print(rfid.serNum[1],HEX);
 	                Serial.print(", ");
-			Serial.print(rfid.serNum[2],HEX);
+					Serial.print(rfid.serNum[2],HEX);
 	                Serial.print(", ");
-			Serial.print(rfid.serNum[3],HEX);
+					Serial.print(rfid.serNum[3],HEX);
 	                Serial.print(", ");
-			Serial.print(rfid.serNum[4],HEX);
+					Serial.print(rfid.serNum[4],HEX);
 	                Serial.println(" ");
 	             } else {
 	               /* If we have the same ID, just write a dot. */
