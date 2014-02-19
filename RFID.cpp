@@ -3,8 +3,6 @@
  * Based on code Dr.Leong   ( WWW.B2CQSHOP.COM )
  * Created by Miguel Balboa, Jan, 2012.
  * Released into the public domain.
- * 整理者：极客工坊bg1lsy (lsy@sogou.com)
- * 整理时间：2013.05.25
  */
 
 /******************************************************************************

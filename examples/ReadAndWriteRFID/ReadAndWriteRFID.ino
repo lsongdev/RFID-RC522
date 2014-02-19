@@ -1,5 +1,3 @@
-//整理者：极客工坊bg1lsy (lsy@sogou.com)
-//整理时间：2013.05.25
 #include <SPI.h>
 #include <RFID.h>
 
