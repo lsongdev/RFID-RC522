@@ -1,8 +1,6 @@
 /* RFID.h - Library to use ARDUINO RFID MODULE KIT 13.56 MHZ WITH TAGS SPI W AND R BY COOQROBOT.
  * Based on code Dr.Leong   ( WWW.B2CQSHOP.COM )
  * Created by Miguel Balboa (circuitito.com), Jan, 2012. 
- * ÕûÀíÕß£º¼«¿Í¹¤·»bg1lsy (lsy@sogou.com)
- * ÕûÀíÊ±¼ä£º2013.05.25
  */
 #ifndef RFID_h
 #define RFID_h
@@ -12,41 +10,41 @@
 
 
 /******************************************************************************
- * ¶¨Òå
+ * å®šä¹‰
  ******************************************************************************/
-#define MAX_LEN 16   // Êı×é×î´ó³¤¶È
+#define MAX_LEN 16   // æ•°ç»„æœ€å¤§é•¿åº¦
 
-//MF522ÃüÁî×Ö
-#define PCD_IDLE              0x00               //ÎŞ¶¯×÷£¬È¡Ïûµ±Ç°ÃüÁî
-#define PCD_AUTHENT           0x0E               //ÑéÖ¤ÃÜÔ¿
-#define PCD_RECEIVE           0x08               //½ÓÊÕÊı¾İ
-#define PCD_TRANSMIT          0x04               //·¢ËÍÊı¾İ
-#define PCD_TRANSCEIVE        0x0C               //·¢ËÍ²¢½ÓÊÕÊı¾İ
-#define PCD_RESETPHASE        0x0F               //¸´Î»
-#define PCD_CALCCRC           0x03               //CRC¼ÆËã
+//MF522å‘½ä»¤å­—
+#define PCD_IDLE              0x00               //æ— åŠ¨ä½œï¼Œå–æ¶ˆå½“å‰å‘½ä»¤
+#define PCD_AUTHENT           0x0E               //éªŒè¯å¯†é’¥
+#define PCD_RECEIVE           0x08               //æ¥æ”¶æ•°æ®
+#define PCD_TRANSMIT          0x04               //å‘é€æ•°æ®
+#define PCD_TRANSCEIVE        0x0C               //å‘é€å¹¶æ¥æ”¶æ•°æ®
+#define PCD_RESETPHASE        0x0F               //å¤ä½
+#define PCD_CALCCRC           0x03               //CRCè®¡ç®—
 
-//Mifare_One¿¨Æ¬ÃüÁî×Ö
-#define PICC_REQIDL           0x26               //Ñ°ÌìÏßÇøÄÚÎ´½øÈëĞİÃß×´Ì¬
-#define PICC_REQALL           0x52               //Ñ°ÌìÏßÇøÄÚÈ«²¿¿¨
-#define PICC_ANTICOLL         0x93               //·À³å×²
-#define PICC_SElECTTAG        0x93               //Ñ¡¿¨
-#define PICC_AUTHENT1A        0x60               //ÑéÖ¤AÃÜÔ¿
-#define PICC_AUTHENT1B        0x61               //ÑéÖ¤BÃÜÔ¿
-#define PICC_READ             0x30               //¶Á¿é
-#define PICC_WRITE            0xA0               //Ğ´¿é
+//Mifare_Oneå¡ç‰‡å‘½ä»¤å­—
+#define PICC_REQIDL           0x26               //å¯»å¤©çº¿åŒºå†…æœªè¿›å…¥ä¼‘çœ çŠ¶æ€
+#define PICC_REQALL           0x52               //å¯»å¤©çº¿åŒºå†…å…¨éƒ¨å¡
+#define PICC_ANTICOLL         0x93               //é˜²å†²æ’
+#define PICC_SElECTTAG        0x93               //é€‰å¡
+#define PICC_AUTHENT1A        0x60               //éªŒè¯Aå¯†é’¥
+#define PICC_AUTHENT1B        0x61               //éªŒè¯Bå¯†é’¥
+#define PICC_READ             0x30               //è¯»å—
+#define PICC_WRITE            0xA0               //å†™å—
 #define PICC_DECREMENT        0xC0               
 #define PICC_INCREMENT        0xC1               
-#define PICC_RESTORE          0xC2               //µ÷¿éÊı¾İµ½»º³åÇø
-#define PICC_TRANSFER         0xB0               //±£´æ»º³åÇøÖĞÊı¾İ
-#define PICC_HALT             0x50               //ĞİÃß
+#define PICC_RESTORE          0xC2               //è°ƒå—æ•°æ®åˆ°ç¼“å†²åŒº
+#define PICC_TRANSFER         0xB0               //ä¿å­˜ç¼“å†²åŒºä¸­æ•°æ®
+#define PICC_HALT             0x50               //ä¼‘çœ 
  
-//ºÍMF522Í¨Ñ¶Ê±·µ»ØµÄ´íÎó´úÂë
+//å’ŒMF522é€šè®¯æ—¶è¿”å›çš„é”™è¯¯ä»£ç 
 #define MI_OK                 0
 #define MI_NOTAGERR           1
 #define MI_ERR                2
 
 
-//------------------MFRC522¼Ä´æÆ÷---------------
+//------------------MFRC522å¯„å­˜å™¨---------------
 //Page 0:Command and Status
 #define     Reserved00            0x00    
 #define     CommandReg            0x01    
@@ -142,7 +140,7 @@ class RFID
 	unsigned char selectTag(unsigned char *serNum);
 	void halt();
 	
-	unsigned char serNum[5];       // 4×Ö½Ú¿¨ĞòÁĞºÅ£¬µÚ5×Ö½ÚÎªĞ£Ñé×Ö½Ú
+	unsigned char serNum[5];       // 4å­—èŠ‚å¡åºåˆ—å·ï¼Œç¬¬5å­—èŠ‚ä¸ºæ ¡éªŒå­—èŠ‚
 	
   private:
 	int _chipSelectPin;

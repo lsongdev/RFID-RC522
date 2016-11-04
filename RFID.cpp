@@ -6,13 +6,13 @@
  */
 
 /******************************************************************************
- * °üº¬ÎÄ¼ş
+ * åŒ…å«æ–‡ä»¶
  ******************************************************************************/
 #include <Arduino.h>
 #include <RFID.h>
 
 /******************************************************************************
- * ¹¹Ôì RFID
+ * æ„é€  RFID
  * int chipSelectPin RFID /ENABLE pin
  ******************************************************************************/
 RFID::RFID(int chipSelectPin, int NRSTPD)
@@ -20,23 +20,23 @@ RFID::RFID(int chipSelectPin, int NRSTPD)
   _chipSelectPin = chipSelectPin;
   _NRSTPD = NRSTPD;
 
-  pinMode(_chipSelectPin,OUTPUT);     // ÉèÖÃ¹Ü½Å_chipSelectPinÎªÊä³ö²¢Á¬½Óµ½Ä£¿éÊ¹ÄÜ¿Ú
+  pinMode(_chipSelectPin,OUTPUT);     // è®¾ç½®ç®¡è„š_chipSelectPinä¸ºè¾“å‡ºå¹¶è¿æ¥åˆ°æ¨¡å—ä½¿èƒ½å£
   digitalWrite(_chipSelectPin, LOW);
 
 
-  pinMode(_NRSTPD,OUTPUT);            // ÉèÖÃ¹Ü½ÅNRSTPDÎªÊä³ö£¬·ÇÖØÖÃ»òµôµç
+  pinMode(_NRSTPD,OUTPUT);            // è®¾ç½®ç®¡è„šNRSTPDä¸ºè¾“å‡ºï¼Œéé‡ç½®æˆ–æ‰ç”µ
   digitalWrite(_NRSTPD, HIGH);
 }
 
 /******************************************************************************
- * ÓÃ»§ API
+ * ç”¨æˆ· API
  ******************************************************************************/
 
 /******************************************************************************
- * º¯ Êı Ãû£ºisCard
- * ¹¦ÄÜÃèÊö£ºÑ°¿¨
- * ÊäÈë²ÎÊı£ºÎŞ
- * ·µ »Ø Öµ£º³É¹¦·µ»Øture Ê§°Ü·µ»Øfalse
+ * å‡½ æ•° åï¼šisCard
+ * åŠŸèƒ½æè¿°ï¼šå¯»å¡
+ * è¾“å…¥å‚æ•°ï¼šæ— 
+ * è¿” å› å€¼ï¼šæˆåŠŸè¿”å›ture å¤±è´¥è¿”å›false
  ******************************************************************************/
 bool RFID::isCard()
 {
@@ -51,17 +51,17 @@ bool RFID::isCard()
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºreadCardSerial
- * ¹¦ÄÜÃèÊö£º·µ»Ø¿¨µÄĞòÁĞºÅ 4×Ö½Ú
- * ÊäÈë²ÎÊı£ºÎŞ
- * ·µ »Ø Öµ£º³É¹¦·µ»Øture Ê§°Ü·µ»Øfalse
+ * å‡½ æ•° åï¼šreadCardSerial
+ * åŠŸèƒ½æè¿°ï¼šè¿”å›å¡çš„åºåˆ—å· 4å­—èŠ‚
+ * è¾“å…¥å‚æ•°ï¼šæ— 
+ * è¿” å› å€¼ï¼šæˆåŠŸè¿”å›ture å¤±è´¥è¿”å›false
  ******************************************************************************/
 bool RFID::readCardSerial(){
 
   unsigned char status;
   unsigned char str[MAX_LEN];
   
-  // ·À³å×²£¬·µ»Ø¿¨µÄĞòÁĞºÅ 4×Ö½Ú£¬´æÈëserNumÖĞ
+  // é˜²å†²æ’ï¼Œè¿”å›å¡çš„åºåˆ—å· 4å­—èŠ‚ï¼Œå­˜å…¥serNumä¸­
   status = anticoll(str);
   memcpy(serNum, str, 5);
   
@@ -72,10 +72,10 @@ bool RFID::readCardSerial(){
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºinit
- * ¹¦ÄÜÃèÊö£º³õÊ¼»¯RC522
- * ÊäÈë²ÎÊı£ºÎŞ
- * ·µ »Ø Öµ£ºÎŞ
+ * å‡½ æ•° åï¼šinit
+ * åŠŸèƒ½æè¿°ï¼šåˆå§‹åŒ–RC522
+ * è¾“å…¥å‚æ•°ï¼šæ— 
+ * è¿” å› å€¼ï¼šæ— 
  ******************************************************************************/
 void RFID::init()
 {
@@ -95,14 +95,14 @@ void RFID::init()
   //writeMFRC522(RxSelReg, 0x86);   //RxWait = RxSelReg[5..0]
   //writeMFRC522(RFCfgReg, 0x7F);     //RxGain = 48dB
 
-  antennaOn();    //´ò¿ªÌìÏß
+  antennaOn();    //æ‰“å¼€å¤©çº¿
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºreset
- * ¹¦ÄÜÃèÊö£º¸´Î»RC522
- * ÊäÈë²ÎÊı£ºÎŞ
- * ·µ »Ø Öµ£ºÎŞ
+ * å‡½ æ•° åï¼šreset
+ * åŠŸèƒ½æè¿°ï¼šå¤ä½RC522
+ * è¾“å…¥å‚æ•°ï¼šæ— 
+ * è¿” å› å€¼ï¼šæ— 
  ******************************************************************************/
 void RFID::reset()
 {
@@ -110,16 +110,16 @@ void RFID::reset()
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºwriteMFRC522
- * ¹¦ÄÜÃèÊö£ºÏòMFRC522µÄÄ³Ò»¼Ä´æÆ÷Ğ´Ò»¸ö×Ö½ÚÊı¾İ
- * ÊäÈë²ÎÊı£ºaddr--¼Ä´æÆ÷µØÖ·£»val--ÒªĞ´ÈëµÄÖµ
- * ·µ »Ø Öµ£ºÎŞ
+ * å‡½ æ•° åï¼šwriteMFRC522
+ * åŠŸèƒ½æè¿°ï¼šå‘MFRC522çš„æŸä¸€å¯„å­˜å™¨å†™ä¸€ä¸ªå­—èŠ‚æ•°æ®
+ * è¾“å…¥å‚æ•°ï¼šaddr--å¯„å­˜å™¨åœ°å€ï¼›val--è¦å†™å…¥çš„å€¼
+ * è¿” å› å€¼ï¼šæ— 
  ******************************************************************************/
 void RFID::writeMFRC522(unsigned char addr, unsigned char val)
 {
   digitalWrite(_chipSelectPin, LOW);
 
-  //µØÖ·¸ñÊ½£º0XXXXXX0
+  //åœ°å€æ ¼å¼ï¼š0XXXXXX0
   SPI.transfer((addr<<1)&0x7E);
   SPI.transfer(val);
 
@@ -127,10 +127,10 @@ void RFID::writeMFRC522(unsigned char addr, unsigned char val)
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºreadMFRC522
- * ¹¦ÄÜÃèÊö£º´ÓMFRC522µÄÄ³Ò»¼Ä´æÆ÷¶ÁÒ»¸ö×Ö½ÚÊı¾İ
- * ÊäÈë²ÎÊı£ºaddr--¼Ä´æÆ÷µØÖ·
- * ·µ »Ø Öµ£º·µ»Ø¶ÁÈ¡µ½µÄÒ»¸ö×Ö½ÚÊı¾İ
+ * å‡½ æ•° åï¼šreadMFRC522
+ * åŠŸèƒ½æè¿°ï¼šä»MFRC522çš„æŸä¸€å¯„å­˜å™¨è¯»ä¸€ä¸ªå­—èŠ‚æ•°æ®
+ * è¾“å…¥å‚æ•°ï¼šaddr--å¯„å­˜å™¨åœ°å€
+ * è¿” å› å€¼ï¼šè¿”å›è¯»å–åˆ°çš„ä¸€ä¸ªå­—èŠ‚æ•°æ®
  ******************************************************************************/
 unsigned char RFID::readMFRC522(unsigned char addr)
 {
@@ -143,10 +143,10 @@ unsigned char RFID::readMFRC522(unsigned char addr)
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºsetBitMask
- * ¹¦ÄÜÃèÊö£ºÖÃRC522¼Ä´æÆ÷Î»
- * ÊäÈë²ÎÊı£ºreg--¼Ä´æÆ÷µØÖ·;mask--ÖÃÎ»Öµ
- * ·µ »Ø Öµ£ºÎŞ
+ * å‡½ æ•° åï¼šsetBitMask
+ * åŠŸèƒ½æè¿°ï¼šç½®RC522å¯„å­˜å™¨ä½
+ * è¾“å…¥å‚æ•°ï¼šreg--å¯„å­˜å™¨åœ°å€;mask--ç½®ä½å€¼
+ * è¿” å› å€¼ï¼šæ— 
  ******************************************************************************/
 void RFID::setBitMask(unsigned char reg, unsigned char mask)
 {
@@ -156,10 +156,10 @@ void RFID::setBitMask(unsigned char reg, unsigned char mask)
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºclearBitMask
- * ¹¦ÄÜÃèÊö£ºÇåRC522¼Ä´æÆ÷Î»
- * ÊäÈë²ÎÊı£ºreg--¼Ä´æÆ÷µØÖ·;mask--ÇåÎ»Öµ
- * ·µ »Ø Öµ£ºÎŞ
+ * å‡½ æ•° åï¼šclearBitMask
+ * åŠŸèƒ½æè¿°ï¼šæ¸…RC522å¯„å­˜å™¨ä½
+ * è¾“å…¥å‚æ•°ï¼šreg--å¯„å­˜å™¨åœ°å€;mask--æ¸…ä½å€¼
+ * è¿” å› å€¼ï¼šæ— 
  ******************************************************************************/
 void RFID::clearBitMask(unsigned char reg, unsigned char mask)
 {
@@ -169,10 +169,10 @@ void RFID::clearBitMask(unsigned char reg, unsigned char mask)
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºantennaOn
- * ¹¦ÄÜÃèÊö£º¿ªÆôÌìÏß,Ã¿´ÎÆô¶¯»ò¹Ø±ÕÌìÏÕ·¢ÉäÖ®¼äÓ¦ÖÁÉÙÓĞ1msµÄ¼ä¸ô
- * ÊäÈë²ÎÊı£ºÎŞ
- * ·µ »Ø Öµ£ºÎŞ
+ * å‡½ æ•° åï¼šantennaOn
+ * åŠŸèƒ½æè¿°ï¼šå¼€å¯å¤©çº¿,æ¯æ¬¡å¯åŠ¨æˆ–å…³é—­å¤©é™©å‘å°„ä¹‹é—´åº”è‡³å°‘æœ‰1msçš„é—´éš”
+ * è¾“å…¥å‚æ•°ï¼šæ— 
+ * è¿” å› å€¼ï¼šæ— 
  ******************************************************************************/
 void RFID::antennaOn(void)
 {
@@ -186,10 +186,10 @@ void RFID::antennaOn(void)
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºantennaOff
- * ¹¦ÄÜÃèÊö£º¹Ø±ÕÌìÏß,Ã¿´ÎÆô¶¯»ò¹Ø±ÕÌìÏÕ·¢ÉäÖ®¼äÓ¦ÖÁÉÙÓĞ1msµÄ¼ä¸ô
- * ÊäÈë²ÎÊı£ºÎŞ
- * ·µ »Ø Öµ£ºÎŞ
+ * å‡½ æ•° åï¼šantennaOff
+ * åŠŸèƒ½æè¿°ï¼šå…³é—­å¤©çº¿,æ¯æ¬¡å¯åŠ¨æˆ–å…³é—­å¤©é™©å‘å°„ä¹‹é—´åº”è‡³å°‘æœ‰1msçš„é—´éš”
+ * è¾“å…¥å‚æ•°ï¼šæ— 
+ * è¿” å› å€¼ï¼šæ— 
  ******************************************************************************/
 void RFID::antennaOff(void)
 {
@@ -203,25 +203,25 @@ void RFID::antennaOff(void)
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºcalculateCRC
- * ¹¦ÄÜÃèÊö£ºÓÃMF522¼ÆËãCRC
- * ÊäÈë²ÎÊı£ºpIndata--Òª¶ÁÊıCRCµÄÊı¾İ£¬len--Êı¾İ³¤¶È£¬pOutData--¼ÆËãµÄCRC½á¹û
- * ·µ »Ø Öµ£ºÎŞ
+ * å‡½ æ•° åï¼šcalculateCRC
+ * åŠŸèƒ½æè¿°ï¼šç”¨MF522è®¡ç®—CRC
+ * è¾“å…¥å‚æ•°ï¼špIndata--è¦è¯»æ•°CRCçš„æ•°æ®ï¼Œlen--æ•°æ®é•¿åº¦ï¼ŒpOutData--è®¡ç®—çš„CRCç»“æœ
+ * è¿” å› å€¼ï¼šæ— 
  ******************************************************************************/
 void RFID::calculateCRC(unsigned char *pIndata, unsigned char len, unsigned char *pOutData)
 {
   unsigned char i, n;
 
   clearBitMask(DivIrqReg, 0x04);      //CRCIrq = 0
-  setBitMask(FIFOLevelReg, 0x80);     //ÇåFIFOÖ¸Õë
+  setBitMask(FIFOLevelReg, 0x80);     //æ¸…FIFOæŒ‡é’ˆ
   //Write_MFRC522(CommandReg, PCD_IDLE);
 
-  //ÏòFIFOÖĞĞ´ÈëÊı¾İ
+  //å‘FIFOä¸­å†™å…¥æ•°æ®
   for (i=0; i<len; i++)
     writeMFRC522(FIFODataReg, *(pIndata+i));
   writeMFRC522(CommandReg, PCD_CALCCRC);
 
-  //µÈ´ıCRC¼ÆËãÍê³É
+  //ç­‰å¾…CRCè®¡ç®—å®Œæˆ
   i = 0xFF;
   do
   {
@@ -230,20 +230,20 @@ void RFID::calculateCRC(unsigned char *pIndata, unsigned char len, unsigned char
   }
   while ((i!=0) && !(n&0x04));      //CRCIrq = 1
 
-  //¶ÁÈ¡CRC¼ÆËã½á¹û
+  //è¯»å–CRCè®¡ç®—ç»“æœ
   pOutData[0] = readMFRC522(CRCResultRegL);
   pOutData[1] = readMFRC522(CRCResultRegM);
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºMFRC522ToCard
- * ¹¦ÄÜÃèÊö£ºRC522ºÍISO14443¿¨Í¨Ñ¶
- * ÊäÈë²ÎÊı£ºcommand--MF522ÃüÁî×Ö£¬
- *           sendData--Í¨¹ıRC522·¢ËÍµ½¿¨Æ¬µÄÊı¾İ,
- *                     sendLen--·¢ËÍµÄÊı¾İ³¤¶È
- *                     backData--½ÓÊÕµ½µÄ¿¨Æ¬·µ»ØÊı¾İ£¬
- *                     backLen--·µ»ØÊı¾İµÄÎ»³¤¶È
- * ·µ »Ø Öµ£º³É¹¦·µ»ØMI_OK
+ * å‡½ æ•° åï¼šMFRC522ToCard
+ * åŠŸèƒ½æè¿°ï¼šRC522å’ŒISO14443å¡é€šè®¯
+ * è¾“å…¥å‚æ•°ï¼šcommand--MF522å‘½ä»¤å­—ï¼Œ
+ *           sendData--é€šè¿‡RC522å‘é€åˆ°å¡ç‰‡çš„æ•°æ®,
+ *                     sendLen--å‘é€çš„æ•°æ®é•¿åº¦
+ *                     backData--æ¥æ”¶åˆ°çš„å¡ç‰‡è¿”å›æ•°æ®ï¼Œ
+ *                     backLen--è¿”å›æ•°æ®çš„ä½é•¿åº¦
+ * è¿” å› å€¼ï¼šæˆåŠŸè¿”å›MI_OK
  ******************************************************************************/
 unsigned char RFID::MFRC522ToCard(unsigned char command, unsigned char *sendData, unsigned char sendLen, unsigned char *backData, unsigned int *backLen)
 {
@@ -256,13 +256,13 @@ unsigned char RFID::MFRC522ToCard(unsigned char command, unsigned char *sendData
 
   switch (command)
   {
-    case PCD_AUTHENT:   //ÈÏÖ¤¿¨ÃÜ
+    case PCD_AUTHENT:   //è®¤è¯å¡å¯†
     {
       irqEn = 0x12;
       waitIRq = 0x10;
       break;
     }
-    case PCD_TRANSCEIVE:  //·¢ËÍFIFOÖĞÊı¾İ
+    case PCD_TRANSCEIVE:  //å‘é€FIFOä¸­æ•°æ®
     {
       irqEn = 0x77;
       waitIRq = 0x30;
@@ -272,23 +272,23 @@ unsigned char RFID::MFRC522ToCard(unsigned char command, unsigned char *sendData
       break;
   }
 
-  writeMFRC522(CommIEnReg, irqEn|0x80); //ÔÊĞíÖĞ¶ÏÇëÇó
-  clearBitMask(CommIrqReg, 0x80);       //Çå³ıËùÓĞÖĞ¶ÏÇëÇóÎ»
-  setBitMask(FIFOLevelReg, 0x80);       //FlushBuffer=1, FIFO³õÊ¼»¯
+  writeMFRC522(CommIEnReg, irqEn|0x80); //å…è®¸ä¸­æ–­è¯·æ±‚
+  clearBitMask(CommIrqReg, 0x80);       //æ¸…é™¤æ‰€æœ‰ä¸­æ–­è¯·æ±‚ä½
+  setBitMask(FIFOLevelReg, 0x80);       //FlushBuffer=1, FIFOåˆå§‹åŒ–
 
-  writeMFRC522(CommandReg, PCD_IDLE);   //ÎŞ¶¯×÷£¬È¡Ïûµ±Ç°ÃüÁî
+  writeMFRC522(CommandReg, PCD_IDLE);   //æ— åŠ¨ä½œï¼Œå–æ¶ˆå½“å‰å‘½ä»¤
 
-  //ÏòFIFOÖĞĞ´ÈëÊı¾İ
+  //å‘FIFOä¸­å†™å…¥æ•°æ®
   for (i=0; i<sendLen; i++)
     writeMFRC522(FIFODataReg, sendData[i]);
 
-  //Ö´ĞĞÃüÁî
+  //æ‰§è¡Œå‘½ä»¤
   writeMFRC522(CommandReg, command);
   if (command == PCD_TRANSCEIVE)
     setBitMask(BitFramingReg, 0x80);    //StartSend=1,transmission of data starts
 
-  //µÈ´ı½ÓÊÕÊı¾İÍê³É
-  i = 2000; //i¸ù¾İÊ±ÖÓÆµÂÊµ÷Õû£¬²Ù×÷M1¿¨×î´óµÈ´ıÊ±¼ä25ms
+  //ç­‰å¾…æ¥æ”¶æ•°æ®å®Œæˆ
+  i = 2000; //iæ ¹æ®æ—¶é’Ÿé¢‘ç‡è°ƒæ•´ï¼Œæ“ä½œM1å¡æœ€å¤§ç­‰å¾…æ—¶é—´25ms
   do
   {
     //CommIrqReg[7..0]
@@ -322,7 +322,7 @@ unsigned char RFID::MFRC522ToCard(unsigned char command, unsigned char *sendData
         if (n > MAX_LEN)
           n = MAX_LEN;
 
-        //¶ÁÈ¡FIFOÖĞ½ÓÊÕµ½µÄÊı¾İ
+        //è¯»å–FIFOä¸­æ¥æ”¶åˆ°çš„æ•°æ®
         for (i=0; i<n; i++)
           backData[i] = readMFRC522(FIFODataReg);
       }
@@ -339,21 +339,21 @@ unsigned char RFID::MFRC522ToCard(unsigned char command, unsigned char *sendData
 
 
 /******************************************************************************
- * º¯ Êı Ãû£ºMFRC522Request
- * ¹¦ÄÜÃèÊö£ºÑ°¿¨£¬¶ÁÈ¡¿¨ÀàĞÍºÅ
- * ÊäÈë²ÎÊı£ºreqMode--Ñ°¿¨·½Ê½£¬
- *           TagType--·µ»Ø¿¨Æ¬ÀàĞÍ
+ * å‡½ æ•° åï¼šMFRC522Request
+ * åŠŸèƒ½æè¿°ï¼šå¯»å¡ï¼Œè¯»å–å¡ç±»å‹å·
+ * è¾“å…¥å‚æ•°ï¼šreqMode--å¯»å¡æ–¹å¼ï¼Œ
+ *           TagType--è¿”å›å¡ç‰‡ç±»å‹
  *                    0x4400 = Mifare_UltraLight
  *                    0x0400 = Mifare_One(S50)
  *                    0x0200 = Mifare_One(S70)
  *                    0x0800 = Mifare_Pro(X)
  *                    0x4403 = Mifare_DESFire
- * ·µ »Ø Öµ£º³É¹¦·µ»ØMI_OK
+ * è¿” å› å€¼ï¼šæˆåŠŸè¿”å›MI_OK
  ******************************************************************************/
 unsigned char RFID::MFRC522Request(unsigned char reqMode, unsigned char *TagType)
 {
   unsigned char status;
-  unsigned int backBits;      //½ÓÊÕµ½µÄÊı¾İÎ»Êı
+  unsigned int backBits;      //æ¥æ”¶åˆ°çš„æ•°æ®ä½æ•°
 
   writeMFRC522(BitFramingReg, 0x07);    //TxLastBists = BitFramingReg[2..0] ???
 
@@ -367,10 +367,10 @@ unsigned char RFID::MFRC522Request(unsigned char reqMode, unsigned char *TagType
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºanticoll
- * ¹¦ÄÜÃèÊö£º·À³åÍ»¼ì²â£¬¶ÁÈ¡Ñ¡ÖĞ¿¨Æ¬µÄ¿¨ĞòÁĞºÅ
- * ÊäÈë²ÎÊı£ºserNum--·µ»Ø4×Ö½Ú¿¨ĞòÁĞºÅ,µÚ5×Ö½ÚÎªĞ£Ñé×Ö½Ú
- * ·µ »Ø Öµ£º³É¹¦·µ»ØMI_OK
+ * å‡½ æ•° åï¼šanticoll
+ * åŠŸèƒ½æè¿°ï¼šé˜²å†²çªæ£€æµ‹ï¼Œè¯»å–é€‰ä¸­å¡ç‰‡çš„å¡åºåˆ—å·
+ * è¾“å…¥å‚æ•°ï¼šserNum--è¿”å›4å­—èŠ‚å¡åºåˆ—å·,ç¬¬5å­—èŠ‚ä¸ºæ ¡éªŒå­—èŠ‚
+ * è¿” å› å€¼ï¼šæˆåŠŸè¿”å›MI_OK
  ******************************************************************************/
 unsigned char RFID::anticoll(unsigned char *serNum)
 {
@@ -389,7 +389,7 @@ unsigned char RFID::anticoll(unsigned char *serNum)
 
   if (status == MI_OK)
   {
-    //Ğ£Ñé¿¨ĞòÁĞºÅ
+    //æ ¡éªŒå¡åºåˆ—å·
     for (i=0; i<4; i++)
       serNumCheck ^= serNum[i];
     if (serNumCheck != serNum[i])
@@ -402,15 +402,15 @@ unsigned char RFID::anticoll(unsigned char *serNum)
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºauth
- * ¹¦ÄÜÃèÊö£ºÑéÖ¤¿¨Æ¬ÃÜÂë
- * ÊäÈë²ÎÊı£ºauthMode--ÃÜÂëÑéÖ¤Ä£Ê½
- *                     0x60 = ÑéÖ¤AÃÜÔ¿
- *                     0x61 = ÑéÖ¤BÃÜÔ¿
- *           BlockAddr--¿éµØÖ·
- *           Sectorkey--ÉÈÇøÃÜÂë
- *           serNum--¿¨Æ¬ĞòÁĞºÅ£¬4×Ö½Ú
- * ·µ »Ø Öµ£º³É¹¦·µ»ØMI_OK
+ * å‡½ æ•° åï¼šauth
+ * åŠŸèƒ½æè¿°ï¼šéªŒè¯å¡ç‰‡å¯†ç 
+ * è¾“å…¥å‚æ•°ï¼šauthMode--å¯†ç éªŒè¯æ¨¡å¼
+ *                     0x60 = éªŒè¯Aå¯†é’¥
+ *                     0x61 = éªŒè¯Bå¯†é’¥
+ *           BlockAddr--å—åœ°å€
+ *           Sectorkey--æ‰‡åŒºå¯†ç 
+ *           serNum--å¡ç‰‡åºåˆ—å·ï¼Œ4å­—èŠ‚
+ * è¿” å› å€¼ï¼šæˆåŠŸè¿”å›MI_OK
  ******************************************************************************/
 unsigned char RFID::auth(unsigned char authMode, unsigned char BlockAddr, unsigned char *Sectorkey, unsigned char *serNum)
 {
@@ -419,7 +419,7 @@ unsigned char RFID::auth(unsigned char authMode, unsigned char BlockAddr, unsign
   unsigned char i;
   unsigned char buff[12];
 
-  //ÑéÖ¤Ö¸Áî+¿éµØÖ·£«ÉÈÇøÃÜÂë£«¿¨ĞòÁĞºÅ
+  //éªŒè¯æŒ‡ä»¤+å—åœ°å€ï¼‹æ‰‡åŒºå¯†ç ï¼‹å¡åºåˆ—å·
   buff[0] = authMode;
   buff[1] = BlockAddr;
   for (i=0; i<6; i++)
@@ -435,10 +435,10 @@ unsigned char RFID::auth(unsigned char authMode, unsigned char BlockAddr, unsign
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºread
- * ¹¦ÄÜÃèÊö£º¶Á¿éÊı¾İ
- * ÊäÈë²ÎÊı£ºblockAddr--¿éµØÖ·;recvData--¶Á³öµÄ¿éÊı¾İ
- * ·µ »Ø Öµ£º³É¹¦·µ»ØMI_OK
+ * å‡½ æ•° åï¼šread
+ * åŠŸèƒ½æè¿°ï¼šè¯»å—æ•°æ®
+ * è¾“å…¥å‚æ•°ï¼šblockAddr--å—åœ°å€;recvData--è¯»å‡ºçš„å—æ•°æ®
+ * è¿” å› å€¼ï¼šæˆåŠŸè¿”å›MI_OK
  ******************************************************************************/
 unsigned char RFID::read(unsigned char blockAddr, unsigned char *recvData)
 {
@@ -457,10 +457,10 @@ unsigned char RFID::read(unsigned char blockAddr, unsigned char *recvData)
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºwrite
- * ¹¦ÄÜÃèÊö£ºĞ´¿éÊı¾İ
- * ÊäÈë²ÎÊı£ºblockAddr--¿éµØÖ·;writeData--Ïò¿éĞ´16×Ö½ÚÊı¾İ
- * ·µ »Ø Öµ£º³É¹¦·µ»ØMI_OK
+ * å‡½ æ•° åï¼šwrite
+ * åŠŸèƒ½æè¿°ï¼šå†™å—æ•°æ®
+ * è¾“å…¥å‚æ•°ï¼šblockAddr--å—åœ°å€;writeData--å‘å—å†™16å­—èŠ‚æ•°æ®
+ * è¿” å› å€¼ï¼šæˆåŠŸè¿”å›MI_OK
  ******************************************************************************/
 unsigned char RFID::write(unsigned char blockAddr, unsigned char *writeData)
 {
@@ -493,10 +493,10 @@ unsigned char RFID::write(unsigned char blockAddr, unsigned char *writeData)
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºselectTag
- * ¹¦ÄÜÃèÊö£ºÑ¡¿¨£¬¶ÁÈ¡¿¨´æ´¢Æ÷ÈİÁ¿
- * ÊäÈë²ÎÊı£ºserNum--´«Èë¿¨ĞòÁĞºÅ
- * ·µ »Ø Öµ£º³É¹¦·µ»Ø¿¨ÈİÁ¿
+ * å‡½ æ•° åï¼šselectTag
+ * åŠŸèƒ½æè¿°ï¼šé€‰å¡ï¼Œè¯»å–å¡å­˜å‚¨å™¨å®¹é‡
+ * è¾“å…¥å‚æ•°ï¼šserNum--ä¼ å…¥å¡åºåˆ—å·
+ * è¿” å› å€¼ï¼šæˆåŠŸè¿”å›å¡å®¹é‡
  ******************************************************************************/
 unsigned char RFID::selectTag(unsigned char *serNum)
 {
@@ -525,10 +525,10 @@ unsigned char RFID::selectTag(unsigned char *serNum)
 }
 
 /******************************************************************************
- * º¯ Êı Ãû£ºHalt
- * ¹¦ÄÜÃèÊö£ºÃüÁî¿¨Æ¬½øÈëĞİÃß×´Ì¬
- * ÊäÈë²ÎÊı£ºÎŞ
- * ·µ »Ø Öµ£ºÎŞ
+ * å‡½ æ•° åï¼šHalt
+ * åŠŸèƒ½æè¿°ï¼šå‘½ä»¤å¡ç‰‡è¿›å…¥ä¼‘çœ çŠ¶æ€
+ * è¾“å…¥å‚æ•°ï¼šæ— 
+ * è¿” å› å€¼ï¼šæ— 
  ******************************************************************************/
 void RFID::halt()
 {

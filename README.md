@@ -12,11 +12,11 @@ Pin layout should be as follows:
 | RFID | Arduino |
 |:-----|--------:|
 | 3.3V | 3.3V    |
-| RST  | 9       |        
-| GND  | GND     |          
-| MISO | 12      |            
-| MOSI | 11      |        
-| SCK  | 13      | 
+| RST  | 9       |
+| GND  | GND     |
+| MISO | 12      |
+| MOSI | 11      |
+| SCK  | 13      |
 | SDA  | 10      |
 | IRQ  | -       |
 
@@ -24,48 +24,50 @@ Pin layout should be as follows:
 
 ## Installing RFID Libraries
 
-	cd /Users/Lsong/Documents/Arduino/libraries
+	cd ~/Documents/Arduino/libraries
 	git clone https://github.com/song940/rfid.git RFID
 	
-reload arduino .
+reboot arduino .
 
 ## Example Code
 
-    #include <SPI.h>
-    #include <RFID.h>
+```cpp
+#include <SPI.h>
+#include <RFID.h>
 
-    #define SS_PIN 10
-    #define RST_PIN 9
+#define SS_PIN 10
+#define RST_PIN 9
 
-    RFID rfid(SS_PIN, RST_PIN);
+RFID rfid(SS_PIN, RST_PIN);
 
-    void setup()
-    {
-      Serial.begin(9600);
-      SPI.begin();
-      rfid.init();
+void setup()
+{
+  Serial.begin(9600);
+  SPI.begin();
+  rfid.init();
+}
+
+void loop()
+{
+  if (rfid.isCard()) {
+    Serial.println("Find the card!");
+    if (rfid.readCardSerial()) {
+      Serial.print("The card's number is  : ");
+      Serial.print(rfid.serNum[0],HEX);
+      Serial.print(rfid.serNum[1],HEX);
+      Serial.print(rfid.serNum[2],HEX);
+      Serial.print(rfid.serNum[3],HEX);
+      Serial.print(rfid.serNum[4],HEX);
+      Serial.println(" ");
     }
-
-    void loop()
-    {
-      if (rfid.isCard()) {
-        Serial.println("Find the card!");
-        if (rfid.readCardSerial()) {
-          Serial.print("The card's number is  : ");
-          Serial.print(rfid.serNum[0],HEX);
-          Serial.print(rfid.serNum[1],HEX);
-          Serial.print(rfid.serNum[2],HEX);
-          Serial.print(rfid.serNum[3],HEX);
-          Serial.print(rfid.serNum[4],HEX);
-          Serial.println(" ");
-        }
-        rfid.selectTag(rfid.serNum);
-      }
-      rfid.halt();
-    }
+    rfid.selectTag(rfid.serNum);
+  }
+  rfid.halt();
+}
+```
     
 ## License
 
-<http://lsong.mit-license.org/>
+[MIT](http://lsong.mit-license.org/)
 
 
